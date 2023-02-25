@@ -25,7 +25,7 @@ Users should be able to:
 
 ### Screenshot
 
-![](./screenshots/mobile.png) | ![](./screenshots/mobile.png)
+![](./screenshots/desktop.png) | ![](./screenshots/mobile.png)
 
 ### Links
 -- Live Site URL: <a href="">Live Website</a>
