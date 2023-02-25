@@ -9,9 +9,16 @@ const defaultFont = Hanken_Grotesk({
 
 interface IHomeProps{
   results: ISkillResult[]
+  errorCode: boolean
 }
 
-export default function Home({results}: IHomeProps) {
+export default function Home({results, errorCode}: IHomeProps) {
+  if(errorCode) {
+    return(
+      <h1>Error...</h1>
+    )
+  }
+
   return (
     <>
       <Head>
@@ -30,12 +37,17 @@ export default function Home({results}: IHomeProps) {
 }
 
 export async function getServerSideProps() {
-  const response = await fetch('http://localhost:3000/api/results')
+  const productionUrl = 'https://result-summary-damasio.netlify.app/api/results'
+  const devUrl = 'http://localhost:3000/api/results'
+  
+  const response = await fetch(productionUrl)
   const data = await response.json()
+  const errorCode = response.ok ? false : response.status
 
   return {
     props: {
-      results: data
+      results: data,
+      errorCode
     }
   }
 }
